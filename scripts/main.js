@@ -24,7 +24,7 @@ if (cursorDot && cursorOutline && window.matchMedia('(hover: hover) and (pointer
     }
     animateCursor();
 
-    document.querySelectorAll('a, button, .project-card, .service-card, .experience-card').forEach(el => {
+    document.querySelectorAll('a, button, .project-card, .contact-link').forEach(el => {
         el.addEventListener('mouseenter', () => cursorOutline.classList.add('hover'));
         el.addEventListener('mouseleave', () => cursorOutline.classList.remove('hover'));
     });
@@ -326,3 +326,37 @@ window.addEventListener('scroll', debouncedScroll);
 console.log('%c👋 Olá, recrutador! ', 'font-size: 20px; color: #6366f1; font-weight: bold;');
 console.log('%cGostou do portfólio? Vamos conversar! ', 'font-size: 14px; color: #a0a0b0;');
 console.log('%c📧 1986.andersonbernardo@gmail.com', 'font-size: 12px; color: #8b5cf6;');
+
+// ============================
+// Fallback para imagens quebradas
+// ============================
+document.querySelectorAll('.project-mockup').forEach(img => {
+    img.addEventListener('error', function() {
+        this.style.display = 'flex';
+        this.style.alignItems = 'center';
+        this.style.justifyContent = 'center';
+        this.style.color = 'var(--text-muted)';
+        this.style.fontSize = 'var(--font-sm)';
+        this.style.fontWeight = '500';
+        this.alt = 'Imagem não disponível';
+        const fallback = document.createElement('span');
+        fallback.textContent = 'Imagem não disponível';
+        fallback.style.cssText = 'color: var(--text-muted); font-size: var(--font-sm); font-weight: 500;';
+        this.parentNode.insertBefore(fallback, this);
+        this.style.display = 'none';
+    });
+});
+
+document.querySelectorAll('.profile-image').forEach(img => {
+    img.addEventListener('error', function() {
+        this.style.display = 'flex';
+        this.style.alignItems = 'center';
+        this.style.justifyContent = 'center';
+        this.alt = 'Foto não disponível';
+        const fallback = document.createElement('span');
+        fallback.textContent = 'Foto não disponível';
+        fallback.style.cssText = 'color: var(--text-muted); font-size: var(--font-sm); font-weight: 500;';
+        this.parentNode.insertBefore(fallback, this);
+        this.style.display = 'none';
+    });
+});
