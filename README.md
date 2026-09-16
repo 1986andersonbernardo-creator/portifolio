@@ -95,13 +95,81 @@ Landing page em evolução para restaurante e bar.
 
 ```
 portfolio/
-├── index.html          # Arquivo HTML principal
-├── README.md          # Documentação do projeto
+├── index.html                        # Arquivo HTML principal
+├── README.md                         # Documentação do projeto
+├── files/
+│   ├── curriculo.pdf                 # Currículo para download
+│   └── certificados/                 # PDFs originais dos certificados
+├── img/
+│   ├── foto.png                      # Foto de perfil
+│   ├── projeto-*.png                 # Imagens dos projetos
+│   └── certificados/                 # Prévias (thumbnails) dos certificados
 ├── styles/
-│   └── main.css       # Estilos globais
+│   └── main.css                      # Estilos globais
 └── scripts/
-    └── main.js        # JavaScript e animações
+    ├── main.js                       # Navegação, scroll e animações
+    ├── certificates-data.js          # Dados das certificações (fonte única)
+    └── certificates-carousel.js      # Renderização e navegação do carrossel
 ```
+
+## 🎓 Certificações (carrossel)
+
+A seção `#certificates` exibe os certificados em um carrossel sem bibliotecas
+externas: navegação por botões, indicadores, setas do teclado e swipe no mobile.
+
+### Como adicionar um novo certificado
+
+1. **PDF original** → `files/certificados/nome-do-certificado.pdf`
+2. **Prévia (imagem da primeira página)** → `img/certificados/nome-do-certificado.webp`
+3. **Dados** → adicione um objeto em `scripts/certificates-data.js`
+   (nome, instituição, categoria, ano, descrição, prévia, alt e PDF).
+
+O carrossel se ajusta sozinho: novos itens criam automaticamente novos cards,
+indicadores e estados dos botões.
+
+### Especificação das prévias (thumbnails)
+
+| Item | Recomendação |
+| --- | --- |
+| Formato | **WebP** (qualidade ~85). Alternativa: JPEG (qualidade 82) |
+| Dimensões | **1200 × 900 px** (proporção 4:3, igual ao card) |
+| Peso | Até ~150 KB por imagem |
+| Conteúdo | Primeira página do certificado, inteira, centralizada e sem cortes |
+| Nome do arquivo | Mesmo nome do PDF, apenas com extensão `.webp` |
+
+As prévias deste repositório foram geradas a partir dos PDFs originais em
+1200×900, com a página centralizada e sombra suave (40–85 KB cada), usando
+`object-fit: contain` no card — ou seja, nada é esticado ou cortado.
+
+> **Conversão de PDF → imagem:** renderize a primeira página em 2x ou 3x
+> (ex.: 2526×1785 px) e reduza para 1200×900 no final. Isso mantém o texto
+> legível em telas retina. Nenhuma biblioteca é necessária no site: os PDFs
+> completos só são carregados quando o usuário clica em **Ver certificado**.
+
+
+### Validação e publicação
+
+Verificação local em Chrome headless: larguras 1440, 820, 390 e 320 px sem
+scroll horizontal; anterior/próximo, foco por teclado, swipe nos dois sentidos,
+menu mobile (incluindo Escape), scroll com movimento reduzido e três PDFs
+retornando HTTP 200. Sintaxe dos três scripts verificada com `node --check`.
+Não há etapa de build: o projeto continua estático e sem dependências de runtime.
+Emulação não substitui testes em aparelhos físicos/Safari.
+
+Os botões existentes compartilham feedback de hover, active e foco visível;
+controles desabilitados usam `disabled` nativo. CTAs e controles têm áreas de
+toque maiores, ícones discretos e respeito a `prefers-reduced-motion`.
+O menu mantém os mesmos cinco destinos existentes.
+
+**Privacidade:** o número do CPF foi ocultado diretamente nos pixels da prévia
+WebP do certificado Programe.py, a pedido do titular. O PDF original não foi
+alterado e continua contendo o CPF, acessível ao abrir o certificado, conforme
+autorizado pelo titular. Tudo em `files/` e `img/` será público. Ao gerar novamente
+a prévia a partir do PDF, reaplique a ocultação antes de publicar.
+
+**Pendências anteriores preservadas:** duas seções usam `id="about"`;
+o navegador solicita um favicon inexistente (404). Não foram reorganizadas
+seções nem adicionados assets de identidade fora do escopo.
 
 ## 🔧 Instalação e Uso
 

@@ -7,17 +7,35 @@ const progressBar = document.getElementById("progressBar");
 const sections = document.querySelectorAll("section[id]");
 const navLinks = document.querySelectorAll(".nav-link");
 
-if (navToggle && navMenu) {
-  navToggle.addEventListener("click", () => {
-    navToggle.classList.toggle("active");
-    navMenu.classList.toggle("active");
-  });
+const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+const scrollBehavior = () => reducedMotion.matches ? "instant" : "smooth";
 
+if (navToggle && navMenu) {
+  const mobileMenu = window.matchMedia("(max-width: 768px)");
+  navToggle.setAttribute("aria-controls", "navMenu");
+  const setMenu = (open) => {
+    navToggle.classList.toggle("active", open);
+    navMenu.classList.toggle("active", open);
+    navToggle.setAttribute("aria-expanded", String(open));
+    navToggle.setAttribute("aria-label", open ? "Fechar menu" : "Abrir menu");
+    navMenu.inert = mobileMenu.matches && !open;
+  };
+  setMenu(false);
+  mobileMenu.addEventListener("change", () => setMenu(false));
+  navToggle.addEventListener("click", () => {
+    setMenu(!navMenu.classList.contains("active"));
+  });
   navLinks.forEach((link) => {
     link.addEventListener("click", () => {
-      navToggle.classList.remove("active");
-      navMenu.classList.remove("active");
+      if (mobileMenu.matches) navToggle.focus({ preventScroll: true });
+      setMenu(false);
     });
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && navMenu.classList.contains("active")) {
+      setMenu(false);
+      navToggle.focus();
+    }
   });
 }
 
@@ -29,7 +47,7 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     const offset = 80;
     const targetPosition =
       target.getBoundingClientRect().top + window.pageYOffset - offset;
-    window.scrollTo({ top: targetPosition, behavior: "smooth" });
+    window.scrollTo({ top: targetPosition, behavior: scrollBehavior() });
   });
 });
 
@@ -96,7 +114,7 @@ window.addEventListener("load", () => {
 
 if (backToTop) {
   backToTop.addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: scrollBehavior() });
   });
 }
 

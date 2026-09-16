@@ -88,6 +88,7 @@
               <a href="#projects" class="btn btn-primary"
                 ><span>Ver projetos</span
                 ><svg
+                  class="icon-arrow"
                   width="20"
                   height="20"
                   viewBox="0 0 24 24"
@@ -104,6 +105,7 @@
                 class="btn btn-secondary"
                 ><span>Ver GitHub</span
                 ><svg
+                  class="icon-external"
                   width="20"
                   height="20"
                   viewBox="0 0 24 24"
@@ -113,9 +115,28 @@
                 >
                   <path d="M14 3h7v7M10 14L21 3M21 14v7h-7" /></svg
               ></a>
+              <a
+                href="files/curriculo.pdf"
+                class="btn btn-secondary"
+                download
+                ><span>Baixar currículo</span
+                ><svg
+                  class="icon-download"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                  <path d="M7 10l5 5 5-5" />
+                  <path d="M12 15V3" /></svg
+              ></a>
               <a href="#contact" class="btn btn-secondary"
                 ><span>Entrar em contato</span
                 ><svg
+                  class="icon-arrow"
                   width="20"
                   height="20"
                   viewBox="0 0 24 24"
@@ -302,9 +323,9 @@
                 </div>
                 <div class="project-links">
                   <a
-                    href="https://controlisp.vercel.app/"
+                    href="https://ftth-gestor.vercel.app/"
                     target="_blank"
-                    rel="noopener"
+                    rel="noopener noreferrer"
                     class="project-link"
                     >Ver projeto</a
                   ><a
@@ -386,9 +407,9 @@
                 </div>
                 <div class="project-links">
                   <a
-                    href="https://maismanet.com.br/"
+                    href="https://sitemaisnet.vercel.app/"
                     target="_blank"
-                    rel="noopener"
+                    rel="noopener noreferrer"
                     class="project-link"
                     >Ver projeto</a
                   >
@@ -427,9 +448,9 @@
                 </div>
                 <div class="project-links">
                   <a
-                    href="https://boteco-taberna.vercel.app/"
+                    href="https://taberna-three.vercel.app/"
                     target="_blank"
-                    rel="noopener"
+                    rel="noopener noreferrer"
                     class="project-link"
                     >Ver projeto</a
                   >
@@ -449,6 +470,97 @@
         </div>
       </section>
 
+      <section class="certificates" id="certificates">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-label">Certificações</span>
+            <h2 class="section-title">
+              Certificações <span class="gradient-text">técnicas</span>
+            </h2>
+            <p class="section-subtitle">
+              Certificados de cursos e formações concluídas. Cada card traz uma
+              prévia do documento e o acesso ao arquivo original em PDF.
+            </p>
+          </div>
+
+          <div
+            class="carousel"
+            data-carousel
+            role="region"
+            aria-roledescription="carrossel"
+            aria-label="Certificações"
+          >
+            <div class="carousel-grid">
+              <div class="carousel-viewport" data-carousel-viewport>
+                <ul
+                  class="carousel-track"
+                  id="certificatesTrack"
+                  data-carousel-track
+                ></ul>
+              </div>
+
+              <div class="carousel-controls">
+                <button
+                  type="button"
+                  class="carousel-nav carousel-nav--prev"
+                  data-carousel-prev
+                  aria-label="Certificado anterior"
+                  aria-controls="certificatesTrack"
+                >
+                  <svg
+                    width="22"
+                    height="22"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    aria-hidden="true"
+                  >
+                    <path d="M15 18l-6-6 6-6" />
+                  </svg>
+                </button>
+
+                <div
+                  class="carousel-dots"
+                  data-carousel-dots
+                  role="group"
+                  aria-label="Selecionar certificado"
+                ></div>
+
+                <button
+                  type="button"
+                  class="carousel-nav carousel-nav--next"
+                  data-carousel-next
+                  aria-label="Próximo certificado"
+                  aria-controls="certificatesTrack"
+                >
+                  <svg
+                    width="22"
+                    height="22"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    aria-hidden="true"
+                  >
+                    <path d="M9 6l6 6-6 6" />
+                  </svg>
+                </button>
+              </div>
+
+              <p class="sr-only" data-carousel-status aria-live="polite"></p>
+
+              <noscript>
+                <p class="carousel-noscript">
+                  Ative o JavaScript do navegador para visualizar o carrossel de
+                  certificações.
+                </p>
+              </noscript>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section class="contact" id="contact">
         <div class="container">
           <div class="section-header">
@@ -463,6 +575,10 @@
           </p>
           <div class="contact-content">
             <div class="contact-links">
+              <a href="files/curriculo.pdf" class="contact-link" download>
+                <span class="contact-label">Currículo</span>
+                <span class="contact-value">Baixar PDF</span>
+              </a>
               <a
                 href="https://wa.me/5581985008954"
                 target="_blank"
@@ -511,6 +627,8 @@
       </div>
     </footer>
 
+    <script src="scripts/certificates-data.js"></script>
+    <script src="scripts/certificates-carousel.js"></script>
     <script src="scripts/main.js"></script>
   </body>
 </html>
