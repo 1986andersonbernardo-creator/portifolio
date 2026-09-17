@@ -158,7 +158,7 @@
         "aria-label",
         `Ver certificado ${certificate.name} (arquivo PDF, abre em nova aba)`,
       );
-      link.appendChild(create("span", "", "Ver certificado"));
+      link.appendChild(create("span", "", "Ver Certificado"));
       link.insertAdjacentHTML("beforeend", ICON_ARROW);
       content.appendChild(link);
     }

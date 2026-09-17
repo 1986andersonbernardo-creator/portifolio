@@ -171,6 +171,25 @@ a prévia a partir do PDF, reaplique a ocultação antes de publicar.
 o navegador solicita um favicon inexistente (404). Não foram reorganizadas
 seções nem adicionados assets de identidade fora do escopo.
 
+## 🎛️ Sistema único de botões
+
+Um só sistema de botões serve todo o site. A diferença entre eles é a
+**hierarquia/variante**, nunca um estilo avulso por função.
+
+| Variante | Uso | Exemplos |
+| --- | --- | --- |
+| `.btn .btn-primary` | CTA primário | Baixar Currículo · Entrar em Contato |
+| `.btn .btn-secondary` | CTA secundário | Ver Projetos · GitHub ↗ |
+| `.project-link` | Ação de projeto no card | Ver Projeto ↗ (deploy) |
+| `.project-link--code` | Ação de código | GitHub ↗ (repositório do projeto) |
+| `.btn .btn-certificate` | Ação documental | Ver Certificado ↗ |
+| `.text-link` | Link discreto de seção | GitHub ↗ (perfil) |
+
+Padrões de texto: **Ver Projeto ↗** sempre leva ao deploy; **GitHub ↗** sempre
+leva ao código (repositório específico do projeto) ou, quando for o perfil,
+aparece uma única vez por contexto (Hero e seção de contato). Todos os links
+externos usam o mesmo ícone de seta ↗ e `rel="noopener noreferrer"`.
+
 ## 🔧 Instalação e Uso
 
 1. Clone o repositório:

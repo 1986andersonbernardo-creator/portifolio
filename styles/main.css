@@ -1517,8 +1517,58 @@ button:focus-visible {
 }
 
 /* Botão de projeto */
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  flex: 1;
+  padding: var(--space-3) var(--space-4);
+  min-height: 48px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-secondary);
+  border-radius: var(--radius-lg);
+  color: var(--text-primary);
+  text-decoration: none;
+  font-size: var(--font-sm);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+.project-link svg,
+.text-link svg {
+  flex-shrink: 0;
+  transition: transform var(--transition-base);
+}
+
+.project-link:hover svg,
+.project-link:focus-visible svg,
+.text-link:hover svg,
+.text-link:focus-visible svg {
+  transform: translate(2px, -2px);
+}
+
+/* Variante de código (GitHub): ação de código, visual discreto */
+.project-link--code {
+  background: transparent;
+  color: var(--text-secondary);
+}
+
+.project-link--code:hover {
+  background: transparent;
+  border-color: var(--accent-primary);
+  color: var(--text-primary);
+  box-shadow: none;
+}
+
 .project-link:active {
   transform: translateY(0) scale(0.98);
+}
+
+.project-link--code:focus-visible {
+  outline: 2px solid var(--accent-tertiary);
+  outline-offset: 3px;
 }
 
 /* Links de texto (cards de áreas, seções) */
